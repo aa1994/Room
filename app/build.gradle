@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.adityaagarwal.room"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+                proguardFile 'proguard-rules.pro'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-category_item_layout:1.0.2'
+    implementation group: "com.android.support", name: "recyclerview-v7", version: "26.1.0"
+    implementation group: "com.android.support", name: "cardview-v7", version: "26.1.0"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'android.arch.persistence.room:runtime:1.0.0'
+    compile "android.arch.persistence.room:rxjava2:1.0.0"
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
+
+    //rxjava
+    compile group: "io.reactivex.rxjava2", name: "rxjava", version: "2.1.8"
+    compile group: "io.reactivex.rxjava2", name: "rxandroid", version: "2.0.1"
+
+    //butterknife
+    // butterknife
+    implementation group: "com.jakewharton", name: "butterknife", version: "8.8.1"
+    annotationProcessor group: "com.jakewharton", name: "butterknife-compiler", version: "8.8.1"
+}
