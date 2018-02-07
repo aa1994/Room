@@ -31,8 +31,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-category_item_layout:1.0.2'
+
+    implementation group: "com.android.support", name: "appcompat-v7", version: "26.1.0"
     implementation group: "com.android.support", name: "recyclerview-v7", version: "26.1.0"
     implementation group: "com.android.support", name: "cardview-v7", version: "26.1.0"
     testImplementation 'junit:junit:4.12'
@@ -46,7 +46,6 @@ dependencies {
     compile group: "io.reactivex.rxjava2", name: "rxjava", version: "2.1.8"
     compile group: "io.reactivex.rxjava2", name: "rxandroid", version: "2.0.1"
 
-    //butterknife
     // butterknife
     implementation group: "com.jakewharton", name: "butterknife", version: "8.8.1"
     annotationProcessor group: "com.jakewharton", name: "butterknife-compiler", version: "8.8.1"
