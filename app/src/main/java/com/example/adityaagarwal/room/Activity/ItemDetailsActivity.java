@@ -1,5 +1,6 @@
 package com.example.adityaagarwal.room.Activity;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.adityaagarwal.room.R;
+import com.example.adityaagarwal.room.ViewModels.ItemDetailsViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,23 +28,18 @@ public class ItemDetailsActivity extends BaseActivity {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
+    private ItemDetailsViewModel viewModel;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details_layout);
         ButterKnife.bind(this);
 
-        disposablesBase(appDatabase.itemsDao().getItems("Book")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(items -> {
-                    if (items.size() == 0) {
-                        Log.d("ITEMS_DETAILS_ACT", " : " + items.size());
-                    }
-                }));
+        viewModel = ViewModelProviders.of(this).get(ItemDetailsViewModel.class);
 
         floatingButton.setOnClickListener(view -> {
-            Snackbar.make(view , "CLICKED" , Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view, "CLICKED", Snackbar.LENGTH_LONG).show();
         });
     }
 
