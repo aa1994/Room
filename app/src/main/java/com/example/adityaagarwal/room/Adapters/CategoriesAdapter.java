@@ -21,6 +21,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private List<Categories> categoriesList = new ArrayList<>();
     private CategoriesViewModel viewModel;
+    private CategoriesView.Listener clickListener;
+
+    public void setClickListener(CategoriesView.Listener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     public class SimpleViewHolder extends RecyclerView.ViewHolder {
         public SimpleViewHolder(View itemView) {
@@ -38,6 +43,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         viewModel = new CategoriesViewModel(categoriesList.get(position));
         CategoriesView view = (CategoriesView) holder.itemView;
+        view.setClickListener(clickListener);
         view.bindTo(viewModel);
     }
 

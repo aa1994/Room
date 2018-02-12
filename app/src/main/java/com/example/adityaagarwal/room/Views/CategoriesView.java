@@ -1,8 +1,8 @@
 package com.example.adityaagarwal.room.Views;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,10 +18,22 @@ import butterknife.ButterKnife;
 
 public class CategoriesView extends LinearLayout {
 
+    @BindView(R.id.category_layout)
+    LinearLayout categoryLayout;
+
     @BindView(R.id.category_text)
     TextView categoryText;
 
     CategoriesViewModel viewModel;
+    Listener clickListener = Listener.NoOp;
+
+    public interface Listener {
+
+        void onClick(CategoriesViewModel viewModel);
+
+        Listener NoOp = (vm) -> {
+        };
+    }
 
     public CategoriesView(Context context) {
         super(context);
@@ -43,8 +55,16 @@ public class CategoriesView extends LinearLayout {
         ButterKnife.bind(this);
     }
 
+    public void setClickListener(Listener clickListener) {
+        this.clickListener = clickListener;
+        categoryLayout.setOnClickListener(view -> {
+            clickListener.onClick(viewModel);
+        });
+    }
+
     private void validateView() {
         categoryText.setText(viewModel.getCategoryName());
     }
+
 }
 
