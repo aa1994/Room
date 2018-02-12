@@ -35,12 +35,21 @@ dependencies {
     implementation group: "com.android.support", name: "appcompat-v7", version: "26.1.0"
     implementation group: "com.android.support", name: "recyclerview-v7", version: "26.1.0"
     implementation group: "com.android.support", name: "cardview-v7", version: "26.1.0"
+    implementation group: "com.android.support", name: "design", version: "26.1.0"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //Room
     compile 'android.arch.persistence.room:runtime:1.0.0'
     compile "android.arch.persistence.room:rxjava2:1.0.0"
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
+
+    //LiveData, View Model
+    compile "android.arch.lifecycle:runtime:1.1.0"
+    compile "android.arch.lifecycle:extensions:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 
     //rxjava
     compile group: "io.reactivex.rxjava2", name: "rxjava", version: "2.1.8"
